@@ -111,7 +111,7 @@ patch: $(DEPS) ## build patch binary
 
 libs: .FORCE ## build patch libraries
 	@$(MAKE) -s -f compile.mk libs
-	@$(MAKE) -s -f web.mk libs
+	# @$(MAKE) -s -f web.mk libs
 
 web: $(DEPS) ## build Javascript patch
 	@$(MAKE) -s -f web.mk web
