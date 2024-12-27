@@ -96,7 +96,7 @@ class MidiMessage {
       data[0] == USB_COMMAND_SYSEX_EOX1 ||
       data[0] == USB_COMMAND_SYSEX_EOX2 ||
       data[0] == USB_COMMAND_SYSEX_EOX3;
-  }
+  }      
   bool isControlChange(){
     return (data[1] & MIDI_STATUS_MASK) == CONTROL_CHANGE;
   }
