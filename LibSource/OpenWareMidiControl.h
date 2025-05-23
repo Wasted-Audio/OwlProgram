@@ -61,6 +61,9 @@ enum PatchParameterId {
 #define BUTTON_F   BUTTON_6
 #define BUTTON_G   BUTTON_7
 #define BUTTON_H   BUTTON_8
+#define BUTTON_I   BUTTON_9
+#define BUTTON_J   BUTTON_10
+#define BUTTON_K   BUTTON_11
 
 enum PatchButtonId {
   PUSHBUTTON = 1,
@@ -73,7 +76,10 @@ enum PatchButtonId {
   BUTTON_5 = 8,
   BUTTON_6 = 9,
   BUTTON_7 = 10,
-  BUTTON_8 = 11
+  BUTTON_8 = 11,
+  BUTTON_9 = 12,
+  BUTTON_10 = 13,
+  BUTTON_11 = 14
 };
 
 #define SYSEX_CONFIGURATION_AUDIO_RATE            "FS"
@@ -138,10 +144,10 @@ enum OpenWareMidiControl {
   PATCH_CONTROL          = 26, /* Remote control: 0=local, 127=MIDI */
   PATCH_BUTTON_ON        = 27, /* Switch a button on: 0-127 button id */
   PATCH_BUTTON_OFF       = 28, /* Switch a button off: 0-127 button id */
-  LED                    = 30, /* set/get LED value: 
+  LED                    = 30, /* set/get LED value:
 				* 0-41 = off
 				* 42-83 = green
-				* 84-127 = red 
+				* 84-127 = red
 				*/
   LEFT_INPUT_GAIN        = 32, /* left channel input gain, -34.5dB to +12dB (92 = 0dB) */
   RIGHT_INPUT_GAIN       = 33,
