@@ -15,6 +15,10 @@ endif
 DEPS = .FORCE
 TARGET ?= patch
 
+ifndef OWL_WEB
+  OWL_WEB=0
+endif
+
 ifdef FAUST
 # options for FAUST compilation
 PATCHNAME   ?= $(FAUST)
@@ -81,10 +85,11 @@ export PATCHFILE PATCHIN PATCHOUT
 export HEAVYTOKEN HEAVYSERVICETOKEN  HEAVY
 export SOUL SOULCLASS SOULFILE SOULHPP
 export CONFIG PLATFORM
+export OWL_WEB
 
 DEPS += $(BUILD)/registerpatch.cpp $(BUILD)/registerpatch.h $(BUILD)/Source/startup.s
 
-all: libs patch web
+all: libs patch $(if $(filter 1,$(OWL_WEB)),web)
 
 .PHONY: .FORCE patch libs faust gen heavy soul maximilian web minify map as native test run check tables resource size clean realclean sysex load store docs help
 
@@ -111,14 +116,19 @@ patch: $(DEPS) ## build patch binary
 
 libs: .FORCE ## build patch libraries
 	@$(MAKE) -s -f compile.mk libs
-	# @$(MAKE) -s -f web.mk libs
+	@$(MAKE) -s -f web.mk libs
 
+ifeq ($(OWL_WEB),1)
 web: $(DEPS) ## build Javascript patch
 	@$(MAKE) -s -f web.mk web
 	@echo Built javascript $(PATCHNAME) in $(BUILD)/web/$(TARGET).js
 
 minify: $(DEPS)
 	@$(MAKE) -s -f web.mk minify
+else
+web:
+minify:
+endif
 
 faust: .FORCE
 	@$(MAKE) -s -f faust.mk faust

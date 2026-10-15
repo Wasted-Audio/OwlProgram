@@ -95,6 +95,7 @@ CPPFLAGS += -I$(LIBSOURCE)
 CPPFLAGS += -I$(BUILDSOURCE)
 CPPFLAGS += -I$(TESTPATCHES)
 CPPFLAGS += -I$(DSPINC)
+ifeq ($(USE_DAISYSP),1)
 CPPFLAGS += -I$(DAISYSP)
 CPPFLAGS += -I$(DAISYSP)/Control
 CPPFLAGS += -I$(DAISYSP)/Drums
@@ -105,6 +106,7 @@ CPPFLAGS += -I$(DAISYSP)/Noise
 CPPFLAGS += -I$(DAISYSP)/PhysicalModeling
 CPPFLAGS += -I$(DAISYSP)/Synthesis
 CPPFLAGS += -I$(DAISYSP)/Utility
+endif
 CPPFLAGS += -DARM_CORTEX
 CPPFLAGS += -DEXTERNAL_SRAM
 CPPFLAGS += -nostdlib -nostartfiles -fno-builtin -ffreestanding
@@ -134,8 +136,10 @@ endif
 PATCH_OBJS += $(addprefix $(BUILD)/, $(notdir $(PATCH_S_SRC:.s=.o)))
 PATCH_OBJS += $(addprefix $(BUILD)/, $(notdir $(PATCH_C_SRC:.c=.o)))
 PATCH_OBJS += $(addprefix $(BUILD)/, $(notdir $(PATCH_CPP_SRC:.cpp=.o)))
+ifeq ($(USE_DAISYSP),1)
 DAISYSP_CPP_SRC = $(wildcard $(DAISYSP)/*/*.cpp)
 DAISYSP_OBJS = $(addprefix $(BUILD)/, $(notdir $(DAISYSP_CPP_SRC:.cpp=.o)))
+endif
 
 # include common make files
 include $(BUILDROOT)/libs.mk
