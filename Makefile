@@ -204,7 +204,7 @@ tests: ## run all unit tests
 
 check: tests ## run test patches and unit tests
 	@unset PATCHNAME PATCHCLASS PATCHFILE && $(MAKE) PATCHSOURCE=TestPatches/CppTest PATCHNAME=CppTest clean patch web run
-	@unset PATCHNAME PATCHCLASS PATCHFILE && $(MAKE) PATCHSOURCE=TestPatches/DaisySPTest PATCHNAME=DaisySPTest USE_DAISYSP=1 clean patch web run
+	@unset PATCHNAME PATCHCLASS PATCHFILE && $(MAKE) PATCHSOURCE=TestPatches/DaisySPTest PATCHNAME=DaisySPTest USE_DAISYSP=1 clean libs patch web run
 	@unset PATCHNAME PATCHCLASS PATCHFILE && $(MAKE) PATCHSOURCE=TestPatches/GenTest GEN=MIDItestMinMax clean patch web run
 	# @unset PATCHNAME PATCHCLASS PATCHFILE && $(MAKE) PATCHSOURCE=TestPatches/FaustTest FAUST=FaustTest clean patch web run # FAUST is not installed for CI
 	@cp FaustSource/*.h TestPatches/FaustTest && unset PATCHNAME PATCHCLASS PATCHFILE && $(MAKE) PATCHSOURCE=TestPatches/FaustTest PATCHNAME=Faust clean patch web run
