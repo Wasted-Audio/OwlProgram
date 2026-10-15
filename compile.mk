@@ -44,8 +44,9 @@ LDFLAGS += -fpie
 LDFLAGS += -flto
 CXXFLAGS = -fno-rtti
 CXXFLAGS += -fno-exceptions
-ifdef HEAVY
-CPPFLAGS    += -D__unix__ -DHV_SIMD_NONE
+HEAVY_TRIGGER := $(or $(HEAVY),$(HEAVY_BUILD))
+ifdef HEAVY_TRIGGER
+CPPFLAGS    += -DHV_BARE_METAL -DHV_SIMD_NONE
 endif
 ifdef FAUST
 ifneq (,$(findstring soundfile,$(FAUSTOPTS)))

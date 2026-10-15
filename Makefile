@@ -116,7 +116,9 @@ patch: $(DEPS) ## build patch binary
 
 libs: .FORCE ## build patch libraries
 	@$(MAKE) -s -f compile.mk libs
+ifeq ($(OWL_WEB),1)
 	@$(MAKE) -s -f web.mk libs
+endif
 
 ifeq ($(OWL_WEB),1)
 web: $(DEPS) ## build Javascript patch

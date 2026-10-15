@@ -1,5 +1,3 @@
-ifeq ($(OWL_WEB),1)
-
 ifeq ($(CONFIG),Debug)
 EMCCFLAGS   ?= -g
 endif
@@ -136,7 +134,3 @@ $(WEBDIR)/%.o: %.cpp
 web: $(WEBDIR)/$(TARGET).js ;
 
 minify: $(WEBDIR)/$(TARGET).min.js ;
-
-else
-$(info web.mk: OWL_WEB not set, skipping web/emscripten build)
-endif
